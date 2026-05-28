@@ -16,21 +16,26 @@
 
 <div align="center">
 
-  <a href="">
+  <a href="http://arxiv.org/abs/2605.28809">
     <img src="https://img.shields.io/badge/Paper-red" alt="arXiv">
   </a>
 
 </div>
 
-The code repository for "[AREA: Attribute Extraction and Aggregation for CLIP-Based Class-Incremental Learning](https://openreview.net)" in PyTorch.  If you use any content of this repo for your work, please cite the following bib entry: 
+The code repository for "[AREA: Attribute Extraction and Aggregation for CLIP-Based Class-Incremental Learning](http://arxiv.org/abs/2605.28809)" in PyTorch.  If you use any content of this repo for your work, please cite the following bib entry: 
 
 ```bibtex
-
+@inproceedings{xie2026area,
+  title={AREA: Attribute Extraction and Aggregation for CLIP-Based Class-Incremental Learning},
+  author={Xie, Zhen-Hao and Shi, Yu-Cheng and Zhou, Da-Wei},
+  booktitle={ICML},
+  year={2026}
+}
 ```
 
 
 
-# 📢 **Updates**
+
 
 
 # 📝 Introduction
