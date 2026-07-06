@@ -15,7 +15,6 @@
     ],
     "projection_type": "pure_mlp",
     "frozen_layers": "visual",
-    "epoch": 20,
     "init_lr": 0.03,
     "batch_size": 64,
     "weight_decay": 0.01,
@@ -33,5 +32,5 @@
     "aug_des_path": "[PATH]",
     "K": 16,
     "precomputed_basis_path": "./precomputed_basis/cifar100/",
-    "g_lambda": 0.0
+    "g_lambda": 0.2
 }

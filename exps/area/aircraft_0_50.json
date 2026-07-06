@@ -33,6 +33,6 @@
     "aug_des_path": "[PATH]",
     "K": 8,
     "precomputed_basis_path": "./precomputed_basis/aircraft/",
-    "g_lambda": 0.0
+    "g_lambda": 0.5
 
 }
