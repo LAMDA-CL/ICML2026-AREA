@@ -1,10 +1,10 @@
-2026-01-26 13:21:49,914 [trainer.py] => config: ./exps/east/aircraft_0_10.json
+2026-01-26 13:21:49,914 [trainer.py] => config: ./exps/area/aircraft_0_10.json
 2026-01-26 13:21:49,914 [trainer.py] => prefix: -
 2026-01-26 13:21:49,914 [trainer.py] => dataset: aircraft
 2026-01-26 13:21:49,914 [trainer.py] => shuffle: True
 2026-01-26 13:21:49,914 [trainer.py] => init_cls: 10
 2026-01-26 13:21:49,914 [trainer.py] => increment: 10
-2026-01-26 13:21:49,914 [trainer.py] => model_name: east
+2026-01-26 13:21:49,914 [trainer.py] => model_name: area
 2026-01-26 13:21:49,914 [trainer.py] => convnet_type: clip
 2026-01-26 13:21:49,914 [trainer.py] => device: [device(type='cuda', index=5)]
 2026-01-26 13:21:49,914 [trainer.py] => seed: 1993
@@ -57,7 +57,7 @@
 2026-01-26 13:22:10,921 [factory.py] => Using default SimpleTokenizer.
 2026-01-26 13:22:10,996 [trainer.py] => All params: 150145025
 2026-01-26 13:22:10,996 [trainer.py] => Trainable params: 524288
-2026-01-26 13:22:11,157 [east.py] => Learning on 0-10
+2026-01-26 13:22:11,157 [area.py] => Learning on 0-10
 2026-01-26 13:24:25,127 [trainer.py] => CNN: {'total': np.float64(90.18), '00-09': np.float64(90.18), 'old': 0, 'new': np.float64(90.18), 'harmonic': np.float64(0.0)}
 2026-01-26 13:24:25,127 [trainer.py] => CNN top1 curve: [np.float64(90.18)]
 2026-01-26 13:24:25,128 [trainer.py] => CNN top5 curve: [np.float64(99.7)]
@@ -65,7 +65,7 @@
 2026-01-26 13:24:25,128 [trainer.py] => Average Accuracy (CNN): 90.18
 2026-01-26 13:24:25,128 [trainer.py] => All params: 150145025
 2026-01-26 13:24:25,129 [trainer.py] => Trainable params: 524288
-2026-01-26 13:24:25,129 [east.py] => Learning on 10-20
+2026-01-26 13:24:25,129 [area.py] => Learning on 10-20
 2026-01-26 13:27:37,243 [trainer.py] => CNN: {'total': np.float64(81.37), '00-09': np.float64(81.85), '10-19': np.float64(80.9), 'old': np.float64(81.85), 'new': np.float64(80.9), 'harmonic': np.float64(81.37)}
 2026-01-26 13:27:37,243 [trainer.py] => CNN top1 curve: [np.float64(90.18), np.float64(81.37)]
 2026-01-26 13:27:37,243 [trainer.py] => CNN top5 curve: [np.float64(99.7), np.float64(99.55)]
@@ -73,7 +73,7 @@
 2026-01-26 13:27:37,243 [trainer.py] => Average Accuracy (CNN): 85.775
 2026-01-26 13:27:37,244 [trainer.py] => All params: 150145025
 2026-01-26 13:27:37,245 [trainer.py] => Trainable params: 524288
-2026-01-26 13:27:37,245 [east.py] => Learning on 20-30
+2026-01-26 13:27:37,245 [area.py] => Learning on 20-30
 2026-01-26 13:32:19,397 [trainer.py] => CNN: {'total': np.float64(77.01), '00-09': np.float64(76.79), '10-19': np.float64(78.51), '20-29': np.float64(75.75), 'old': np.float64(77.65), 'new': np.float64(75.75), 'harmonic': np.float64(76.69)}
 2026-01-26 13:32:19,397 [trainer.py] => CNN top1 curve: [np.float64(90.18), np.float64(81.37), np.float64(77.01)]
 2026-01-26 13:32:19,397 [trainer.py] => CNN top5 curve: [np.float64(99.7), np.float64(99.55), np.float64(98.51)]
@@ -81,7 +81,7 @@
 2026-01-26 13:32:19,397 [trainer.py] => Average Accuracy (CNN): 82.85333333333334
 2026-01-26 13:32:19,397 [trainer.py] => All params: 150145025
 2026-01-26 13:32:19,398 [trainer.py] => Trainable params: 524288
-2026-01-26 13:32:19,398 [east.py] => Learning on 30-40
+2026-01-26 13:32:19,398 [area.py] => Learning on 30-40
 2026-01-26 13:38:17,512 [trainer.py] => CNN: {'total': np.float64(75.11), '00-09': np.float64(77.38), '10-19': np.float64(75.52), '20-29': np.float64(73.05), '30-39': np.float64(74.47), 'old': np.float64(75.32), 'new': np.float64(74.47), 'harmonic': np.float64(74.89)}
 2026-01-26 13:38:17,513 [trainer.py] => CNN top1 curve: [np.float64(90.18), np.float64(81.37), np.float64(77.01), np.float64(75.11)]
 2026-01-26 13:38:17,513 [trainer.py] => CNN top5 curve: [np.float64(99.7), np.float64(99.55), np.float64(98.51), np.float64(97.01)]
@@ -89,7 +89,7 @@
 2026-01-26 13:38:17,513 [trainer.py] => Average Accuracy (CNN): 80.9175
 2026-01-26 13:38:17,513 [trainer.py] => All params: 150145025
 2026-01-26 13:38:17,514 [trainer.py] => Trainable params: 524288
-2026-01-26 13:38:17,514 [east.py] => Learning on 40-50
+2026-01-26 13:38:17,514 [area.py] => Learning on 40-50
 2026-01-26 13:45:01,503 [trainer.py] => CNN: {'total': np.float64(70.12), '00-09': np.float64(72.62), '10-19': np.float64(71.64), '20-29': np.float64(67.37), '30-39': np.float64(69.67), '40-49': np.float64(69.28), 'old': np.float64(70.33), 'new': np.float64(69.28), 'harmonic': np.float64(69.8)}
 2026-01-26 13:45:01,504 [trainer.py] => CNN top1 curve: [np.float64(90.18), np.float64(81.37), np.float64(77.01), np.float64(75.11), np.float64(70.12)]
 2026-01-26 13:45:01,504 [trainer.py] => CNN top5 curve: [np.float64(99.7), np.float64(99.55), np.float64(98.51), np.float64(97.01), np.float64(94.43)]
@@ -97,7 +97,7 @@
 2026-01-26 13:45:01,504 [trainer.py] => Average Accuracy (CNN): 78.75800000000001
 2026-01-26 13:45:01,504 [trainer.py] => All params: 150145025
 2026-01-26 13:45:01,505 [trainer.py] => Trainable params: 524288
-2026-01-26 13:45:01,506 [east.py] => Learning on 50-60
+2026-01-26 13:45:01,506 [area.py] => Learning on 50-60
 2026-01-26 13:53:31,888 [trainer.py] => CNN: {'total': np.float64(69.48), '00-09': np.float64(72.92), '10-19': np.float64(68.66), '20-29': np.float64(65.27), '30-39': np.float64(70.57), '40-49': np.float64(71.08), '50-59': np.float64(68.36), 'old': np.float64(69.7), 'new': np.float64(68.36), 'harmonic': np.float64(69.02)}
 2026-01-26 13:53:31,888 [trainer.py] => CNN top1 curve: [np.float64(90.18), np.float64(81.37), np.float64(77.01), np.float64(75.11), np.float64(70.12), np.float64(69.48)]
 2026-01-26 13:53:31,888 [trainer.py] => CNN top5 curve: [np.float64(99.7), np.float64(99.55), np.float64(98.51), np.float64(97.01), np.float64(94.43), np.float64(93.32)]
@@ -105,7 +105,7 @@
 2026-01-26 13:53:31,888 [trainer.py] => Average Accuracy (CNN): 77.21166666666667
 2026-01-26 13:53:31,889 [trainer.py] => All params: 150145025
 2026-01-26 13:53:31,890 [trainer.py] => Trainable params: 524288
-2026-01-26 13:53:31,890 [east.py] => Learning on 60-70
+2026-01-26 13:53:31,890 [area.py] => Learning on 60-70
 2026-01-26 14:03:52,710 [trainer.py] => CNN: {'total': np.float64(63.71), '00-09': np.float64(68.15), '10-19': np.float64(63.28), '20-29': np.float64(62.57), '30-39': np.float64(65.77), '40-49': np.float64(66.27), '50-59': np.float64(64.78), '60-69': np.float64(55.12), 'old': np.float64(65.14), 'new': np.float64(55.12), 'harmonic': np.float64(59.71)}
 2026-01-26 14:03:52,710 [trainer.py] => CNN top1 curve: [np.float64(90.18), np.float64(81.37), np.float64(77.01), np.float64(75.11), np.float64(70.12), np.float64(69.48), np.float64(63.71)]
 2026-01-26 14:03:52,710 [trainer.py] => CNN top5 curve: [np.float64(99.7), np.float64(99.55), np.float64(98.51), np.float64(97.01), np.float64(94.43), np.float64(93.32), np.float64(90.07)]
@@ -113,7 +113,7 @@
 2026-01-26 14:03:52,711 [trainer.py] => Average Accuracy (CNN): 75.28285714285714
 2026-01-26 14:03:52,711 [trainer.py] => All params: 150145025
 2026-01-26 14:03:52,712 [trainer.py] => Trainable params: 524288
-2026-01-26 14:03:52,713 [east.py] => Learning on 70-80
+2026-01-26 14:03:52,713 [area.py] => Learning on 70-80
 2026-01-26 14:14:07,401 [trainer.py] => CNN: {'total': np.float64(62.2), '00-09': np.float64(69.94), '10-19': np.float64(60.0), '20-29': np.float64(62.57), '30-39': np.float64(65.47), '40-49': np.float64(66.87), '50-59': np.float64(66.57), '60-69': np.float64(53.92), '70-79': np.float64(52.11), 'old': np.float64(63.63), 'new': np.float64(52.11), 'harmonic': np.float64(57.3)}
 2026-01-26 14:14:07,402 [trainer.py] => CNN top1 curve: [np.float64(90.18), np.float64(81.37), np.float64(77.01), np.float64(75.11), np.float64(70.12), np.float64(69.48), np.float64(63.71), np.float64(62.2)]
 2026-01-26 14:14:07,402 [trainer.py] => CNN top5 curve: [np.float64(99.7), np.float64(99.55), np.float64(98.51), np.float64(97.01), np.float64(94.43), np.float64(93.32), np.float64(90.07), np.float64(88.61)]
@@ -121,7 +121,7 @@
 2026-01-26 14:14:07,402 [trainer.py] => Average Accuracy (CNN): 73.64750000000001
 2026-01-26 14:14:07,402 [trainer.py] => All params: 150145025
 2026-01-26 14:14:07,403 [trainer.py] => Trainable params: 524288
-2026-01-26 14:14:07,403 [east.py] => Learning on 80-90
+2026-01-26 14:14:07,403 [area.py] => Learning on 80-90
 2026-01-26 14:27:40,655 [trainer.py] => CNN: {'total': np.float64(59.29), '00-09': np.float64(62.5), '10-19': np.float64(60.6), '20-29': np.float64(56.29), '30-39': np.float64(63.66), '40-49': np.float64(62.65), '50-59': np.float64(64.48), '60-69': np.float64(50.9), '70-79': np.float64(53.01), '80-89': np.float64(59.46), 'old': np.float64(59.27), 'new': np.float64(59.46), 'harmonic': np.float64(59.36)}
 2026-01-26 14:27:40,657 [trainer.py] => CNN top1 curve: [np.float64(90.18), np.float64(81.37), np.float64(77.01), np.float64(75.11), np.float64(70.12), np.float64(69.48), np.float64(63.71), np.float64(62.2), np.float64(59.29)]
 2026-01-26 14:27:40,657 [trainer.py] => CNN top5 curve: [np.float64(99.7), np.float64(99.55), np.float64(98.51), np.float64(97.01), np.float64(94.43), np.float64(93.32), np.float64(90.07), np.float64(88.61), np.float64(86.71)]
@@ -129,7 +129,7 @@
 2026-01-26 14:27:40,657 [trainer.py] => Average Accuracy (CNN): 72.05222222222223
 2026-01-26 14:27:40,658 [trainer.py] => All params: 150145025
 2026-01-26 14:27:40,659 [trainer.py] => Trainable params: 524288
-2026-01-26 14:27:40,660 [east.py] => Learning on 90-100
+2026-01-26 14:27:40,660 [area.py] => Learning on 90-100
 2026-01-26 14:43:08,418 [trainer.py] => CNN: {'total': np.float64(61.78), '00-09': np.float64(64.29), '10-19': np.float64(58.21), '20-29': np.float64(58.08), '30-39': np.float64(62.46), '40-49': np.float64(63.25), '50-59': np.float64(65.97), '60-69': np.float64(49.1), '70-79': np.float64(51.51), '80-89': np.float64(64.86), '90-99': np.float64(80.06), 'old': np.float64(59.76), 'new': np.float64(80.06), 'harmonic': np.float64(68.44)}
 2026-01-26 14:43:08,418 [trainer.py] => CNN top1 curve: [np.float64(90.18), np.float64(81.37), np.float64(77.01), np.float64(75.11), np.float64(70.12), np.float64(69.48), np.float64(63.71), np.float64(62.2), np.float64(59.29), np.float64(61.78)]
 2026-01-26 14:43:08,418 [trainer.py] => CNN top5 curve: [np.float64(99.7), np.float64(99.55), np.float64(98.51), np.float64(97.01), np.float64(94.43), np.float64(93.32), np.float64(90.07), np.float64(88.61), np.float64(86.71), np.float64(87.64)]
