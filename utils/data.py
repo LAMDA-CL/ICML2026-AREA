@@ -1,5 +1,10 @@
+import logging
+import re
+from pathlib import Path
+
 import numpy as np
 from torchvision import datasets, transforms
+from utils.metadata import load_class_names, normalize_class_name
 from utils.toolkit import split_images_labels
 
 
@@ -337,6 +342,52 @@ class Flowers(iData):
         self.train_data, self.train_targets = split_images_labels(train_dset.imgs)
         self.test_data, self.test_targets = split_images_labels(test_dset.imgs)
 
+class _AircraftImageFolder(datasets.ImageFolder):
+    def find_classes(self, directory):
+        root = Path(directory).resolve()
+        class_names = load_class_names("aircraft")
+        classes = [normalize_class_name(name) for name in class_names]
+        directories = [entry for entry in root.iterdir() if entry.is_dir()]
+        renames = []
+
+        for class_name, target_name in zip(class_names, classes):
+            class_key = re.sub(r"[\s_/-]+", "", class_name).casefold()
+            candidates = [entry for entry in directories
+                          if re.sub(r"[\s_/-]+", "", entry.name).casefold() == class_key]
+            if "/" in class_name:
+                nested = root.joinpath(*class_name.split("/"))
+                if nested.is_dir():
+                    candidates.append(nested)
+            if len(candidates) != 1:
+                raise ValueError(
+                    "Expected exactly one Aircraft folder for {!r} in {}; found: {}".format(
+                        class_name, root, [str(candidate) for candidate in candidates]))
+            renames.append((candidates[0], root / target_name))
+
+        source_roots = {source.relative_to(root).parts[0] for source, _ in renames}
+        unexpected = {entry.name for entry in directories} - source_roots
+        if unexpected:
+            raise ValueError("Unexpected Aircraft folders in {}: {}".format(
+                root, sorted(unexpected)))
+
+        nested_parents = {source.parent for source, _ in renames if source.parent != root}
+        for source, target in renames:
+            if source.parent == root and source.name == target.name:
+                continue
+            source.rename(target)
+            logging.info("Normalized Aircraft folder %s -> %s", source, target)
+        for parent in nested_parents:
+            while parent != root and parent.is_dir() and not any(parent.iterdir()):
+                parent.rmdir()
+                parent = parent.parent
+
+        actual = {entry.name for entry in root.iterdir() if entry.is_dir()}
+        if actual != set(classes):
+            raise ValueError("Aircraft folders do not match labels.json in {}: {}".format(
+                root, sorted(actual.symmetric_difference(classes))))
+        return classes, {name: index for index, name in enumerate(classes)}
+
+
 class Aircraft(iData):
     use_path = True
     
@@ -351,8 +402,8 @@ class Aircraft(iData):
         train_dir = "[PATH]"
         test_dir = "[PATH]"
 
-        train_dset = datasets.ImageFolder(train_dir)
-        test_dset = datasets.ImageFolder(test_dir)
+        train_dset = _AircraftImageFolder(train_dir)
+        test_dset = _AircraftImageFolder(test_dir)
 
         print(train_dset.class_to_idx)
 

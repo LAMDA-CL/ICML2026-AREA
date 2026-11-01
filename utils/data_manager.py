@@ -3,6 +3,7 @@ import numpy as np
 from PIL import Image
 from torch.utils.data import Dataset
 from torchvision import transforms
+from utils.metadata import load_class_names
 from utils.data import iCIFAR10, iCIFAR100, iImageNet100, iImageNet1000, iCIFAR224, \
     iImageNetR,iImageNetA,CUB, objectnet, omnibenchmark, vtab, Caltech101, Food101, Flowers, \
     Aircraft,UCF101,StanfordCars, SUN
@@ -12,8 +13,7 @@ class DataManager(object):
     def __init__(self, dataset_name, shuffle, seed, init_cls, increment):
 
         # load class to label name json file
-        with open('./utils/labels.json', 'r') as f:
-            self._class_to_label = json.load(f)[dataset_name]
+        self._class_to_label = load_class_names(dataset_name)
         print(self._class_to_label)
         with open('./utils/templates.json', 'r') as f:
             self._data_to_prompt = json.load(f)[dataset_name]

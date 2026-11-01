@@ -8,10 +8,11 @@ from torch import optim
 from einops import einsum, rearrange
 from torch.nn import functional as F
 from torch.utils.data import DataLoader
-from utils.inc_net import Engine, CLIPwProto, Area
+from utils.inc_net import Area
 from models.base import BaseLearner
 from utils.toolkit import tensor2numpy, get_attribute, ClipLoss
 from utils.data_manager import LaionData, DataManager
+from utils.metadata import get_description_path, load_class_names
 from torch.utils.data import DataLoader
 import torchvision.transforms as T
 import math
@@ -65,7 +66,7 @@ class Learner(BaseLearner):
 
     @torch.no_grad()
     def _get_class_name_features(self):
-        self.classnames = []
+        self.classnames = load_class_names(self.dataset)
         self.classnames = [c.replace(" ", "_") for c in self.classnames]
         labels = list(range(len(self.classnames)))
         classnames = self.classnames
@@ -74,8 +75,8 @@ class Learner(BaseLearner):
         texts = self._network.tokenizer(texts).to(self._device)
         self.text_features = torch.zeros(
             len(classnames), self._network.model.text_projection.shape[1]).to(self._device)
+        text_feature = self._network.encode_text(texts)
         for i in labels:
-            text_feature = self._network.encode_text(texts)
             self.text_features[i] = text_feature[i]
 
     @torch.no_grad()
@@ -137,14 +138,13 @@ class Learner(BaseLearner):
         logging.info("Computing textual base matrixs...")
         self.textual_base_matrices = torch.zeros(
             data_manager.get_total_classnum(), 512, self.K).to(self._device)
-        with open(os.path.join(self.text_des_path, "classnames.txt"), 'r') as f:
-            classnames = f.readlines()
-        classnames = classnames[:data_manager.get_total_classnum()]
+        classnames = self.classnames[:data_manager.get_total_classnum()]
         prog_bar = tqdm(classnames)
         for idx, classname in enumerate(prog_bar):
             classname = classname.strip()
             descriptions = []
-            with open(os.path.join(self.text_des_path, classname.replace(" ", "_").replace("/", "_") + "_descriptions.txt"), 'r') as desc_f:
+            with open(get_description_path(self.text_des_path, classname, idx),
+                      'r', encoding='utf-8') as desc_f:
                 descriptions = desc_f.readlines()
             desc_features = []
             for desc in descriptions:
@@ -208,6 +208,7 @@ class Learner(BaseLearner):
             else:
                 self._get_textual_base_matrix(data_manager)
                 if self.precomputed_basis_path is not None:
+                    os.makedirs(self.precomputed_basis_path, exist_ok=True)
                     save_path = os.path.join(
                         self.precomputed_basis_path, 'textual_base_matrices.pth')
                     torch.save(
@@ -223,6 +224,7 @@ class Learner(BaseLearner):
             else:
                 self._get_visual_base_matrix(data_manager)
                 if self.precomputed_basis_path is not None:
+                    os.makedirs(self.precomputed_basis_path, exist_ok=True)
                     save_path = os.path.join(
                         self.precomputed_basis_path, 'visual_base_matrices.pth')
                     torch.save(
@@ -290,11 +292,11 @@ class Learner(BaseLearner):
                 score_occ_gt = self._network._get_visual_score(
                     occ_inputs, self._cur_task)  # [B, K]
 
-                class_name = self.classnames[data_manager._class_order[real_targets[0].item(
-                )]]
-                occ_des_file = os.path.join(self.occ_des_path, class_name.replace(
-                    " ", "_").replace("/", "_") + "_descriptions.txt")
-                with open(occ_des_file, 'r') as f:
+                class_index = data_manager._class_order[real_targets[0].item()]
+                class_name = self.classnames[class_index]
+                occ_des_file = get_description_path(
+                    self.occ_des_path, class_name, class_index)
+                with open(occ_des_file, 'r', encoding='utf-8') as f:
                     occ_descriptions = f.readlines()
                 occ_description = random.choice(occ_descriptions).strip()
                 occ_score = self._network._get_textual_score(
@@ -309,9 +311,9 @@ class Learner(BaseLearner):
                 M = 3
                 view_scores_list = []
                 text_scores_list = []
-                aug_des_file = os.path.join(self.aug_des_path, class_name.replace(
-                    " ", "_").replace("/", "_") + "_descriptions.txt")
-                with open(aug_des_file, 'r') as f:
+                aug_des_file = get_description_path(
+                    self.aug_des_path, class_name, class_index)
+                with open(aug_des_file, 'r', encoding='utf-8') as f:
                     aug_descriptions = f.readlines()
                 for _ in range(M):
                     aug_inputs = augmentation_transform(inputs)
